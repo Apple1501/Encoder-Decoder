@@ -332,16 +332,16 @@ namespace WindowsFormsApp1
             int k = KEYinfo.Length;
 
 
-            if (n > k) //проверка,что массив ключа должен быть больше кодированого сообщения
+            if (n > k) //проверка,что массив ключа должен быть больше кодированного сообщения
             {
                 int l = n / k; //только количество целых делений
-                int p = n % k; //остаток от деления (сколько элементов необходимо добавить в самомо конце преобразований массива)
+                int p = n % k; //остаток от деления (сколько элементов необходимо добавить в самом конце преобразований массива)
 
                 char[] KEYinfoNew = new char[n]; //новый расширенный массив для значений ключа 
                 int d = 0; //вспомогательная переменная для работы 
                 while (l > 0)
                 {
-                    //Копирование данного масиива в другой в скобках, начиная с данногг индекса 
+                    //Копирование данного массива в другой в скобках, начиная с данного индекса 
                     KEYinfo.CopyTo(KEYinfoNew, d);
                     d = d + k;
                     l--;
@@ -379,9 +379,9 @@ namespace WindowsFormsApp1
 
             for (int i = 0; i < n; i++)
             {
-                M = (int)Message[i]; //перевод кодировок таблицы сиволов в тип int
+                M = (int)Message[i]; //перевод кодировок таблицы символов в тип int
                 K = (int)KEY[i];
-                Result[i] = (M ^ K); //Исключающее ИЛИ работает только в типом int 
+                Result[i] = (M ^ K); //Исключающее ИЛИ работает только с типом int 
 
             }
 
@@ -466,7 +466,7 @@ namespace WindowsFormsApp1
  
         }
 
-        void DES(string INFO, char[] KE) //дешифровка. Каждая цифра это элемент  тут нужно будет считывать из по значениям и потом 
+        void DES(string INFO, char[] KE) //дешифровка. 
         {
 
             //на вход полуаем набор цифр
@@ -501,9 +501,8 @@ namespace WindowsFormsApp1
 
             char[] Final = new char[l.Length];
 
-            Final=Encoding.GetEncoding(1251).GetChars(b);
-
-
+            Final=Encoding.GetEncoding(1251).GetChars(b); //получение символов по кодам после XOR
+            //Формирование результата и вывод на экран
             des = new string(Final);
             richTextBoxDES.AppendText(des);
             buttonSaveDES.Visible = true;
